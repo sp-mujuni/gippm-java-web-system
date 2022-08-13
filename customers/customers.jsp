@@ -78,7 +78,9 @@
                     ResultSet llike=null;
                
                     
-                    //Gender:Make
+                    //Gender:Male
+                    ResultSet numMale = null;
+                            
                     ResultSet xmilk=null;
 
                     ResultSet xghee=null;
@@ -89,6 +91,8 @@
              
                     
                     //Gender: Female
+                    ResultSet numFemale = null;
+                    
                     ResultSet ymilk=null;
         
                     ResultSet yghee=null;
@@ -114,6 +118,8 @@
                     String r16=null;
                     String r17=null;
                     String r18=null;
+                    String r19=null;
+                    String r20=null;
          
                     
                     
@@ -128,7 +134,7 @@
             
             //2. Connecting to database. This is only successful if the JDBC driver is working
             try {    //Connecting to database 
-                    db_connect = DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");                
+                    db_connect = DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");                
                     out.println("Database connection is successful.");
 
                     
@@ -141,7 +147,23 @@
                            res.next()){
                            name= res.getString(2);
                      
-                    }               
+                    }
+                    
+                    numMale = checkdb.executeQuery("select count(gender) as m from customers where gender = 'male'");
+                    while(
+                    
+                            numMale.next()){
+                            r19 = numMale.getString("m");
+                    }
+                    
+                    numFemale = checkdb.executeQuery("select count(gender) as f from customers where gender = 'female'");
+                    while(
+                    
+                            numFemale.next()){
+                            r20 = numFemale.getString("f");
+                    
+                    };
+                    
                 
                     west=  checkdb.executeQuery("select count(region) as w from customers where region='Western'");
                     while(
@@ -469,97 +491,20 @@
                         <div class="col-md-6 col-lg-3">
                            <div class="full socile_icons fb margin_bottom_30">
                               <div class="social_icon-g">
-                                 UHT Milk
+                                 Total
                               </div>
                               <div class="social_cont">
                                  <ul>
                                     <li>
                                        <span><strong><%
-                            out.println(r5);
+                            out.println(r20);
                       
                                    
                  %></strong></span>
                                        <span>Female</span>
                                     </li>
                                     <li>
-                                       <span><strong><%out.println(r6);%></strong></span>
-                                       <span>Male</span>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full socile_icons tw margin_bottom_30">
-                              <div class="social_icon-g">
-                                 Butter
-                              </div>
-                                       <div class="social_cont">
-                                 <ul>
-                                    <li>
-                                       <span><strong><%out.println(r7);%></strong></span>
-                                       <span>Female</span>
-                                    </li>
-                                    <li>
-                                       <span><strong><%
-                     
-                            out.println(r8);
-                              
-                 %></strong></span>
-                                       <span>Male</span>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full socile_icons linked margin_bottom_30">
-                              <div class="social_icon-g">
-                                 Ghee
-                              </div>
-                                       <div class="social_cont">
-                                 <ul>
-                                    <li>
-                                       <span><strong><%
-                     
-                            out.println(r9);
-                                
-                 %></strong></span>
-                                       <span>Female</span>
-                                    </li>
-                                    <li>
-                                       <span><strong><%
-                     
-                            out.println(r10);
-                          
-                 %></strong></span>
-                                       <span>Male</span>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full socile_icons google_p margin_bottom_30">
-                              <div class="social_icon-g">
-                                 Yoghurt
-                              </div>
-                                       <div class="social_cont">
-                                 <ul>
-                                    <li>
-                                       <span><strong><%
-                     
-                            out.println(r11);
-                               
-                 %></strong></span>
-                                       <span>Female</span>
-                                    </li>
-                                    <li>
-                                       <span><strong><%
-                     
-                            out.println(r12);
-                               
-                 %></strong></span>
+                                       <span><strong><%out.println(r19);%></strong></span>
                                        <span>Male</span>
                                     </li>
                                  </ul>
@@ -682,3 +627,6 @@
       <script src="../js/chart_custom_style1.js"></script>
    </body>
 </html><!doctype html>
+
+<!-- select count(gender) from customers where gender = 'male' -->
+<!-- select count(gender) from customers where gender = 'female' -->
