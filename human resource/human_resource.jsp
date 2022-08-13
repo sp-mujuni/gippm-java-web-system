@@ -78,7 +78,7 @@
             
             //2. Connecting to database. This is only successful if the JDBC driver is working
             try {    //Connecting to database 
-                    db_connect = DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");                
+                    db_connect = DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");                
                     out.println("Database connection is successful.");
 
                     
@@ -196,9 +196,9 @@
                                                 <div class="price_table_inner">
                                                    <div class="cont_table_price_blog">
                                                       <p class="blue1_color"><span class="price_no"><%
-                        shor=  checkdb.executeQuery("select production_size from production_lines where prdtn_line_name='short term'");
+                        shor=  checkdb.executeQuery("select prdtn_size from production_lines where prdtn_line_name='short term'");
                     while(shor.next()){
-                        sh = shor.getString("production_size");
+                        sh = shor.getString("prdtn_size");
                         out.println(sh);
         }%></span></p>
                                                    </div>
@@ -217,9 +217,9 @@
                                                 <div class="price_table_inner">
                                                    <div class="cont_table_price_blog">
                                                       <p class="green_color"> <span class="price_no"><%
-                        mid=  checkdb.executeQuery("select production_size from production_lines where prdtn_line_name='mid term'");
+                        mid=  checkdb.executeQuery("select prdtn_size from production_lines where prdtn_line_name='mid term'");
                     while(mid.next()){
-                        md = mid.getString("production_size");
+                        md = mid.getString("prdtn_size");
                         out.println(md);
         }%></span></p>
                                                    </div>
@@ -240,9 +240,9 @@
                                                 <div class="price_table_inner">
                                                    <div class="cont_table_price_blog">
                                                       <p class="red_color"><span class="price_no"><%
-                        lon=  checkdb.executeQuery("select production_size from production_lines where prdtn_line_name='long term'");
+                        lon=  checkdb.executeQuery("select prdtn_size from production_lines where prdtn_line_name='long term'");
                     while(lon.next()){
-                        lo = lon.getString("production_size");
+                        lo = lon.getString("prdtn_size");
                         out.println(md);
         }%></span></p>
                                                    </div>
@@ -263,9 +263,9 @@
                                                 <div class="price_table_inner">
                                                    <div class="cont_table_price_blog">
                                                       <p class="red_color"><span class="price_no"><%
-                        unassign=  checkdb.executeQuery("select production_size from production_lines where prdtn_line_name='unassigned'");
+                        unassign=  checkdb.executeQuery("select prdtn_size from production_lines where prdtn_line_name='unassigned'");
                     while(unassign.next()){
-                        none = unassign.getString("production_size");
+                        none = unassign.getString("prdtn_size");
                         out.println(none);
         }%></span></p>
                                                    </div>
