@@ -71,7 +71,7 @@
             
             //2. Connecting to database. This is only successful if the JDBC driver is working
             try {    //Connecting to database 
-                    db_connect = DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");                
+                    db_connect = DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");                
                     
 
                     

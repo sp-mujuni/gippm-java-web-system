@@ -69,7 +69,7 @@
                            </div>
                            <div class="field">
                               <label class="label_field">Staff ID</label>
-                              <input type="text" name="id" required/>
+                              <input type="text" name="id" placeholder="the ID must start with gippm i.e. gippm643" required/>
                            </div>
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
