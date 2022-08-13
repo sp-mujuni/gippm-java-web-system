@@ -71,7 +71,7 @@
             
             //2. Connecting to database. This is only successful if the JDBC driver is working
             try {    //Connecting to database 
-                    db_connect = DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");                
+                    db_connect = DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");                
                     out.println("Database connection is successful.");
 
                     
@@ -92,7 +92,7 @@
                    
                     }      
 
-                    daily=  checkdb.executeQuery("select sum(stock) as workload from products where production_line='1'");
+                    daily=  checkdb.executeQuery("select sum(stock) as workload from products where productionline='1'");
                       
                       while(daily.next()){
                       day= daily.getInt("workload");
