@@ -52,7 +52,7 @@ public class Likes_ghee extends HttpServlet {
                try{
                 int count = 1;
                 
-               Connection co=DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");
+               Connection co=DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");
                Statement checkdb=co.createStatement();
 
                checkdb.executeUpdate("update products set likes='"+count+"' where product_name='ghee'");

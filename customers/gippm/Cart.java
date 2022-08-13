@@ -75,7 +75,7 @@ public class Cart extends HttpServlet {
                Class.forName("com.mysql.jdbc.Driver"); 
                try{
                    
-               Connection dbconnect=DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");
+               Connection dbconnect=DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");
                Statement checkdb=dbconnect.createStatement();
               checkdb.executeUpdate("insert into orders(customer_id, milk, butter, ghee, yoghurt, total)values('"+67+"','"+update_milk+"','"+update_butter+"','"+update_ghee+"','"+update_yog+"','"+total+"')");
               

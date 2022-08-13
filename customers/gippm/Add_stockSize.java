@@ -63,12 +63,12 @@ public class Add_stockSize extends HttpServlet {
                Class.forName("com.mysql.jdbc.Driver"); 
                try{
                    
-               Connection dbconnect=DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");
+               Connection dbconnect=DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");
                Statement checkdb=dbconnect.createStatement();
-               checkdb.executeUpdate("update products set stock=stock+'"+mid_term+"' where production_line='"+2+"'");
-               checkdb.executeUpdate("update products set stock=stock+'"+long_term+"' where production_line='"+3+"'");
+               checkdb.executeUpdate("update products set stock=stock+'"+mid_term+"' where productionline='"+2+"'");
+               checkdb.executeUpdate("update products set stock=stock+'"+long_term+"' where productionline='"+3+"'");
 
-               checkdb.executeUpdate("update products set stock=stock+'"+short_term+"' where production_line='"+1+"'");
+               checkdb.executeUpdate("update products set stock=stock+'"+short_term+"' where productionline='"+1+"'");
                
                out.println("Company stock has been successfully updated....To return to dashboard, click");
                out.println("<a href='admin/admin.jsp'>Here</a>");
