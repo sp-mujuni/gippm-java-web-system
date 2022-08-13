@@ -52,6 +52,10 @@ public class Reallocation extends HttpServlet {
 
         ResultSet sales_mid=null;
         String nmid=null;
+        
+        ResultSet totalstaff=null;
+        String totalString=null;
+        int newgroup;
 
         double shortstaff;
         int newshortstaff;
@@ -73,7 +77,7 @@ public class Reallocation extends HttpServlet {
                Class.forName("com.mysql.jdbc.Driver"); 
                try{
                    
-               Connection dbconnect=DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");
+               Connection dbconnect=DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");
                Statement checkdb=dbconnect.createStatement();
                
 
@@ -81,21 +85,27 @@ public class Reallocation extends HttpServlet {
                  //is 72 hours. The size of staff in short term line needed to produce the same products
                  shortstaff=72.0*0.25;
                  newshortstaff = (int)shortstaff;
+                 
+                 checkdb.executeUpdate("update production_lines set prdtn_size='"+newshortstaff+"' where prdtn_line_id='1'");
+                 
+                 //counting number of lonterm staff
+                 
+
                
                         //Getting total sales from each production line from database
-                 sales_short= checkdb.executeQuery("select sum(sales) as sshort from products where production_line='1'");
+                 sales_short= checkdb.executeQuery("select sum(sales) as sshort from products where productionline='1'");
                  while(sales_short.next()){
                         nshorts = sales_short.getString("sshort");
                         
                  }
                  
-                 sales_long= checkdb.executeQuery("select sum(sales) as slong from products where production_line='3'");
+                 sales_long= checkdb.executeQuery("select sum(sales) as slong from products where productionline='3'");
                  while(sales_long.next()){
                         nlong = sales_long.getString("slong");
                         
                  }
                  
-                 sales_mid= checkdb.executeQuery("select sum(sales) as smid from products where production_line='2'");
+                 sales_mid= checkdb.executeQuery("select sum(sales) as smid from products where productionline='2'");
                  while(sales_mid.next()){
                         nmid = sales_mid.getString("smid");
                         
@@ -105,25 +115,46 @@ public class Reallocation extends HttpServlet {
                longsales = parseInt(nlong);
                midsales = parseInt(nmid);
                shortsales = parseInt(nshorts);
+               
+               
+                totalstaff=  checkdb.executeQuery("select count(staff_id) as num from staff");
+                while(totalstaff.next()){
+                        totalString = totalstaff.getString("num");
+                        
+                 }
+                
+                
+                
+                //total staff into integer. -2 is needed to show that two staff remain in the other line
+                //after reallocation
+                newgroup=parseInt(totalString)-2;
+                
                 
                  if(longsales>shortsales && longsales>midsales)
                  {
-                     checkdb.executeUpdate("update staff set allocation='"+3+"' where staff_id!='gippm003'");
+                     checkdb.executeUpdate("update staff set allocation='"+3+"' where allocation='2'");
+                     checkdb.executeUpdate("update staff set allocation='"+3+"' where allocation='1'");
+                     checkdb.executeUpdate("update production_lines set prdtn_size='"+3+"' where prdtn_line_id='3'");
+                     checkdb.executeUpdate("update production_lines set prdtn_size='"+newgroup+"' where prdtn_line_id='3'");
+
                  }
                  else if(midsales>longsales && midsales > shortsales)
                  {
-                     checkdb.executeUpdate("update staff set allocation='"+2+"' where staff_id!='gippm002'");
-                 }
-                 else if(shortsales>longsales && shortsales > midsales)
-                 {
-                     //Upadting short term production line using time of long term line
-                    checkdb.executeUpdate("update production_lines set production_size=production_size+'"+newshortstaff+"' where prdtn_line_id='1'");
+                     checkdb.executeUpdate("update staff set allocation='"+2+"' where allocation='3'");
+                     checkdb.executeUpdate("update staff set allocation='"+2+"' where allocation='1'");
+                     checkdb.executeUpdate("update production_lines set prdtn_size='"+2+"' where prdtn_line_id='2'");
+                     checkdb.executeUpdate("update production_lines set prdtn_size='"+newgroup+"' where prdtn_line_id='2'");
+
                  }
                  else
                  {
                      out.println("Error in reallocation! ");
                  }
                  
+                
+                 //Emptying the unassinged production line
+                checkdb.executeUpdate("update production_lines set prdtn_size='"+0+"' where prdtn_line_name='unassigned'");
+
                  
                  
 

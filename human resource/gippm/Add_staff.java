@@ -53,10 +53,10 @@ public class Add_staff extends HttpServlet {
                Class.forName("com.mysql.jdbc.Driver"); 
                try{
                    
-               Connection co=DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");
+               Connection co=DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");
                Statement checkdb=co.createStatement();
                checkdb.executeUpdate("insert into staff(staff_name, staff_id)values('"+name+"','"+id+"')");
-               checkdb.executeUpdate("update production_lines set production_size=production_size+'"+1+"' where prdtn_line_id='0'");
+               checkdb.executeUpdate("update production_lines set prdtn_size=prdtn_size+'"+1+"' where prdtn_line_id='0'");
                out.println("Successfully Added....To return to dashboard, click");
                out.println("<a href='admin/pages/human_resource.jsp'>Here</a>");
                }catch(SQLException e){
