@@ -54,7 +54,7 @@
             
             //2. Connecting to database. This is only successful if the JDBC driver is working
             try {    //Connecting to database 
-                    db_connect = DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");
+                    db_connect = DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");
             
             //3. If database connection is successful, we can now issue an SQL statement to verify the admin
                     checkdb = db_connect.createStatement();
@@ -209,7 +209,7 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Yorghut</a>
+                        <a class="h6 text-decoration-none text-truncate" href="">Yoghrut</a>
                         <hr/>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>UGX 2,000</h5><h6 class="text-muted ml-2"><del>UGX 4,000</del></h6>
