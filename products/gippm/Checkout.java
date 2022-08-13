@@ -57,7 +57,7 @@ public class Checkout extends HttpServlet {
                Class.forName("com.mysql.jdbc.Driver"); 
                try{
                    
-               Connection dbconnect=DriverManager.getConnection("jdbc:mysql://localhost:8000/gippm_db", "root", "password");
+               Connection dbconnect=DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5512420", "sql5512420", "A45YfnLFQH");
                Statement checkdb=dbconnect.createStatement();
                 checkdb.executeUpdate("update orders set payment='"+pay+"' where customer_id='"+67+"'");
 
