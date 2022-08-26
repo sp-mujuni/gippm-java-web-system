@@ -1,4 +1,4 @@
-# GIPPM Java Business Automation System
+# GIPPM Business Automation Java System
 
 This project is intended to demonstrate process automation for businesses, through integration of customizable modules.
 --
